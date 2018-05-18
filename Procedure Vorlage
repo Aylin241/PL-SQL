@@ -1,0 +1,32 @@
+--PROCEDURE VORLAGE (mit cursor)
+CREATE OR REPLACE PROCEDURE proc_name (name_in IN Dtyp, name_out OUT Dtyp)
+AS
+
+		v_    tab.spalte%TYPE;
+
+		cursor cur_n is 
+			
+
+BEGIN 
+		open cur_n;
+		LOOP
+			Fetch cur_n into v_  ;
+			exit when cur_n%NOTFOUND;
+			DBMS_OUTPUT.PUT_LINE(     );
+		END LOOP;
+		close cur_n;
+
+EXCEPTION
+	WHEN no_data_found THEN
+		RAISE_APPLICATION_ERROR (-20050, '.... nicht vorhanden' ); 
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20060,'Problem: '||'Fehlermeldung: '|| substr(SQLERRM,1,80));
+END;
+/
+
+DECLARE
+	name_out number(20,2); --out parameter mit Datentyp
+BEGIN
+	proc_name(name_in, v_ok);
+END;
+/
