@@ -1,0 +1,14 @@
+--Trigger-Sequence Vorlage
+CREATE SEQUENCE sq_artikelnr
+START WITH 4711
+INCREMENT BY 2;
+
+CREATE OR REPLACE TRIGGER T_artkelnr
+BEFORE INSERT OR UPDATE OF artikelnr ON artikel
+FOR EACH ROW
+DECLARE
+
+BEGIN
+    :NEW.artikelnr := sq_artikelnr.NEXTVAL;
+END;
+/
