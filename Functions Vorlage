@@ -1,0 +1,16 @@
+--VORLAGE
+CREATE OR REPLACE FUNCTION function_name ( var_in_1 IN NUMBER, var_in_2 IN NUMBER) 
+RETURN NUMBER 
+AS 
+	select_value NUMBER(11,2), 
+	return_value NUMBER(11,2) 
+BEGIN  
+	
+	
+EXCEPTION
+	WHEN NO_DATA_FOUND THEN   
+	RAISE_APPLICATION_ERROR(-20009,'.... nicht vorhanden');
+    when others then
+    RAISE_APPLICATION_ERROR(-20020, 'Error: ' || substr(1, 80, sqlerrm));
+END; 
+/
